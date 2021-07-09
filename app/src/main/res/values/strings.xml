@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PDMFinanceAppPedroCortez</string>
+    <string name="title_list">List</string>
+    <string name="title_newDrive">New</string>
+    <string-array name="selectName">
+        <item>Credit</item>
+        <item>Debit</item>
+    </string-array>
+    <string name="description">Description</string>
+    <string name="value">Value</string>
+</resources>
