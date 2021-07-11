@@ -3,20 +3,21 @@ package com.example.pdmfinanceapppedrocortez.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Registers implements Parcelable {
 
-    private int id;
     private String description;
     private Double price;
+    private String type;
 
-    public Registers(int id, String description, Double price){
-        this.id = id;
+    public Registers(String description, Double price){
         this.description = description;
         this.price = price;
     }
 
     protected Registers(Parcel in){
-        id = in.readInt();
         description = in.readString();
         if(in.readByte() == 0){
             price = null;
@@ -37,14 +38,18 @@ public class Registers implements Parcelable {
         }
     };
 
-    public int getId(){ return id; }
-
     public String getDescription() {
         return description;
     }
 
     public Double getPrice() {
         return price;
+    }
+
+    public String toCsvString() {
+        Double registerValue = this.type.equals("Credit") ? this.price : this.price * -1;
+        String csvString = this.description.concat(";").concat(registerValue.toString()).concat("\n");
+        return csvString;
     }
 
     @Override
@@ -54,7 +59,6 @@ public class Registers implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
         parcel.writeString(description);
         if(price == null){
             parcel.writeByte((byte) 0);
