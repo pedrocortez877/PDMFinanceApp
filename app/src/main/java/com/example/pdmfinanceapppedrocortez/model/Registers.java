@@ -3,6 +3,7 @@ package com.example.pdmfinanceapppedrocortez.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -12,9 +13,14 @@ public class Registers implements Parcelable {
     private Double price;
     private String type;
 
-    public Registers(String description, Double price){
+    public Registers(String description, Double price, String type){
         this.description = description;
         this.price = price;
+        this.type = type;
+    }
+
+    public Registers(){
+
     }
 
     protected Registers(Parcel in){
@@ -46,11 +52,38 @@ public class Registers implements Parcelable {
         return price;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public String toCsvString() {
         Double registerValue = this.type.equals("Credit") ? this.price : this.price * -1;
         String csvString = this.description.concat(";").concat(registerValue.toString()).concat("\n");
         return csvString;
     }
+
+    public String formatPrice() {
+        String value = "";
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        if (this.type.equals("Debit")) {
+            value = value.concat("-");
+        }
+        value = value.concat(formatter.format(new BigDecimal(this.price)));
+        return value;
+    }
+
 
     @Override
     public int describeContents() {

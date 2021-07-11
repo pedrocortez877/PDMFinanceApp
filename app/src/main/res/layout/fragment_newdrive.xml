@@ -23,50 +23,53 @@
             android:src="@drawable/dollar" />
     </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/etxtDescription"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/description"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etxtValue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnDebitOrCred"/>
-
-    <Spinner
-        android:id="@+id/spnDebitOrCred"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/style_sppiner"
-        android:drawSelectorOnTop="true"
-        android:entries="@array/selectName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
-
-    <EditText
-        android:id="@+id/etxtValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/value"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnSend"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="Button"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView2"
+        android:paddingLeft="40dp" >
+
+        <Spinner
+            android:id="@+id/spnDebitOrCred"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/style_sppiner"
+            android:drawSelectorOnTop="true"
+            android:entries="@array/selectName" />
+
+        <EditText
+            android:id="@+id/etxtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/description"
+            android:inputType="textPersonName"
+            android:layout_marginLeft="40dp"/>
+
+        <EditText
+            android:id="@+id/etxtValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/value"
+            android:inputType="textPersonName"
+            android:layout_marginLeft="40dp"/>
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginBottom="64dp"
+            android:onClick="onClickSave"
+            android:text="@string/send" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

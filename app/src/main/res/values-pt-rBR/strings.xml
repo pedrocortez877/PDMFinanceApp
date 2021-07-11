@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PDMFinanceAppPedroCortez</string>
+    <string name="title_list">Lista</string>
+    <string name="title_newDrive">Novo</string>
+    <string name="description">Descrição</string>
+    <string name="value">Valor</string>
+    <string name="send">Enviar</string>
+</resources>

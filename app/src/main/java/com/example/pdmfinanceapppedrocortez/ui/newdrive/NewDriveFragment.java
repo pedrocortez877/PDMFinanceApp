@@ -1,13 +1,16 @@
 package com.example.pdmfinanceapppedrocortez.ui.newdrive;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +31,7 @@ public class NewDriveFragment extends Fragment {
     private TextView etxtValue;
     private Spinner spnDebitOrCredit;
     private String type;
-
+    private Button btnSend;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class NewDriveFragment extends Fragment {
         etxtDescription = root.findViewById(R.id.etxtDescription);
         etxtValue = root.findViewById(R.id.etxtValue);
         spnDebitOrCredit = root.findViewById(R.id.spnDebitOrCred);
+        btnSend = root.findViewById(R.id.btnSend);
         spnDebitOrCredit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -52,21 +56,32 @@ public class NewDriveFragment extends Fragment {
             }
         });
 
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickSave(view);
+            }
+        });
+
         return root;
     }
 
     public void onClickSave(View view){
-        String registerDescription = this.etxtDescription.getText().toString();
-        Double registerValue = Double.parseDouble(this.etxtValue.getText().toString());
+        String descriptionSave = this.etxtDescription.getText().toString();
+        Double valueSave = Double.parseDouble(this.etxtValue.getText().toString());
 
-        if(this.type.equals("Debit")){
-            registerValue = registerValue * -1;
-        }
-
-        Registers register = new Registers(registerDescription, registerValue);
+        Registers register = new Registers();
+        register.setDescription(descriptionSave);
+        register.setPrice(valueSave);
+        register.setType(type);
 
         DaoRegistersSingleton.getInstance().addRegister(register);
 
+        etxtDescription.setText("");
+        etxtValue.setText("");
+        spnDebitOrCredit.setSelection(0);
+        Toast toast = Toast.makeText(getContext(), "Transação efetuada", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override

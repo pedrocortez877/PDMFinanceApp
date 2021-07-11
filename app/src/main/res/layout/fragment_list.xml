@@ -4,5 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".ui.list.ListFragment"/>
+    tools:context=".ui.list.ListFragment">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListRegisters"
+        android:paddingBottom="60dp"
+        android:paddingHorizontal="5dp"
+        tools:listitem="@layout/register_item_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/valueTotalRegister"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24dp"
+        android:layout_marginBottom="60dp"
+        android:textAlignment="center"
+        android:text="Saldo: R$ 180,00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:visibility="gone"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@id/valueTotalRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_save_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
